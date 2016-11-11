@@ -33,7 +33,7 @@ public class RobotTemplate implements FRCApplication {
 	@Override
 	public void setupRobot() throws ExtendedMotorFailureException {
 
-		Logger.info("You v0.1 2016-11-09");
+		Logger.info("You v0.11 2016-11-10");
 		
 		// Right drive train
 		FloatOutput right1 = FRC.talonCAN(1).simpleControl();
