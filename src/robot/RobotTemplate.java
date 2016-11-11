@@ -55,10 +55,30 @@ public class RobotTemplate implements FRCApplication {
 		BooleanOutput claw = FRC.solenoid(1);
 		
 		//Controllers
-		FloatInput leftXJoystick = FRC.joystick1.axis(1).deadzone(0.2f);
-    	FloatInput leftYJoystick = FRC.joystick1.axis(2).deadzone(0.2f);
-    	FloatInput rightXJoystick = FRC.joystick1.axis(5).deadzone(0.2f);
-    	FloatInput rightYJoystick = FRC.joystick1.axis(6).deadzone(0.2f);
+		
+		//Driver - Movement
+		
+		//Left side
+    	FloatInput leftYJoystick1 = FRC.joystick1.axis(2).deadzone(0.2f);
+    	//Right side
+    	FloatInput rightYJoystick1 = FRC.joystick1.axis(6).deadzone(0.2f);
+    	
+    	//Copilot - Arm
+    	
+    	//Lower arm
+    	FloatInput leftYJoystick2 = FRC.joystick2.axis(2).deadzone(0.2f);
+    	//Upper arm
+    	FloatInput rightYJoystick2 = FRC.joystick2.axis(6).deadzone(0.2f);
+    	//Claw
+    	BooleanInput leftButton2 = FRC.joystick2.button(5);
+    	BooleanInput rightButton2 = FRC.joystick2.button(6);
+    	BooleanInput button2 = leftButton2.or(rightButton2);
+    	
+    	//Turning the robot
+    	FloatInput leftXJoystick2 = FRC.joystick2.axis(1).deadzone(0.2f);
+    	
+    	
+    	
 		
 	}
 }
