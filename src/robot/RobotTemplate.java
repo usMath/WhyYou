@@ -40,14 +40,14 @@ public class RobotTemplate implements FRCApplication {
 		FloatOutput right2 = FRC.talonCAN(2).simpleControl();
 		FloatOutput right3 = FRC.talonCAN(3).simpleControl();
 		
-		FloatOutput right = right1.combine(right2).combine(right3);
+		FloatOutput right = right1.combine(right2).combine(right3).addRamping(0.02f, FRC.constantPeriodic);
 		
 		// Left drive train
 		FloatOutput left1 = FRC.talonCAN(4).simpleControl();
 		FloatOutput left2 = FRC.talonCAN(5).simpleControl();
 		FloatOutput left3 = FRC.talonCAN(6).simpleControl();
 		
-		FloatOutput left = left1.combine(left2).combine(left3);
+		FloatOutput left = left1.combine(left2).combine(left3).addRamping(0.02f, FRC.constantPeriodic).negate();
 		
 		// Arm has lower joint, upper joint, and claw. Similar to human arm (hand = claw).
 		FloatOutput armJointLower = FRC.talonCAN(7).simpleControl();
@@ -77,7 +77,20 @@ public class RobotTemplate implements FRCApplication {
     	//Turning the robot
     	FloatInput leftXJoystick2 = FRC.joystick2.axis(1).deadzone(0.2f);
     	
+    	//Sending controls
     	
+    	//Drive train
+    	leftYJoystick1.send(left);
+    	rightYJoystick1.send(right);
+    	
+    	//Arm
+    	leftYJoystick2.send(armJointLower);
+    	rightYJoystick2.send(armJointUpper);
+    	button2.send(claw);
+    	
+    	//Turning the robot - copilot
+    	leftXJoystick2.send(left);
+    	leftXJoystick2.negated().send(right);
     	
 		
 	}
