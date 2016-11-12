@@ -33,7 +33,7 @@ public class RobotTemplate implements FRCApplication {
 	@Override
 	public void setupRobot() throws ExtendedMotorFailureException {
 
-		Logger.info("You v0.21 2016-11-11");
+		Logger.info("You v0.22 2016-11-11");
 		
 		// Right drive train
 		FloatOutput right1 = FRC.talonCAN(1).simpleControl();
@@ -120,6 +120,26 @@ public class RobotTemplate implements FRCApplication {
     	        turnLeft.set(0.75f);
     	        waitForTime(10000);
     	        drive.set(0f);
+    	        
+    	        //Actual code:
+    	        
+    	        /*
+    	         * NOTE: 14 inches wheel to center of robot radius
+    	         * Start by facing towards a bunny, so that turning 180 degrees and moving forwards about 14 feet, then dropping the bunny will make it in the burrow
+    	         * 
+    	         * arm down
+    	         * close claw
+    	         * arm up
+    	         * turn left 180 degrees
+    	         * move forwards 13.5 feet
+    	         * arm down
+    	         * open claw
+    	         * arm up
+    	         * move backwards 3.5 feet
+    	         * turn left 90 degrees
+    	         * move in a 180 degrees arc around bin crossing lines
+    	         * 
+    	         */
     	        
     	    }
     	    
