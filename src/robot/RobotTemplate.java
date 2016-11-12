@@ -33,7 +33,7 @@ public class RobotTemplate implements FRCApplication {
 	@Override
 	public void setupRobot() throws ExtendedMotorFailureException {
 
-		Logger.info("You v0.20 2016-11-11");
+		Logger.info("You v0.21 2016-11-11");
 		
 		// Right drive train
 		FloatOutput right1 = FRC.talonCAN(1).simpleControl();
@@ -80,6 +80,7 @@ public class RobotTemplate implements FRCApplication {
     	BooleanInput button2 = leftButton2.or(rightButton2);
     	
     	//Turning the robot
+    	BooleanInput leftJoystickButton2 = FRC.joystick2.button(9);
     	FloatInput leftXJoystick2 = FRC.joystick2.axis(1).deadzone(0.2f);
     	
     	//Sending controls
@@ -94,8 +95,8 @@ public class RobotTemplate implements FRCApplication {
     	button2.send(claw);
     	
     	//Turning the robot - copilot
-    	leftXJoystick2.send(left);
-    	leftXJoystick2.negated().send(right);
+    	leftJoystickButton2.toFloat(0f, 0.5f).multipliedBy(leftXJoystick2).send(left);
+    	leftJoystickButton2.toFloat(0f, -0.5f).multipliedBy(leftXJoystick2).send(left);
     	
     	//Autonomous testing - will finish sometime
     	FRC.registerAutonomous(new InstinctModule()
