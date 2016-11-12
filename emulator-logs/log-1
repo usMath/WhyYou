@@ -1,0 +1,60 @@
+Logging began at Fri Nov 11 16:09:39 PST 2016 [0]
+[13 FINE] (ConnectionReceiverThread.java:58) About to listen on 1540
+[516 INFO] (DeviceListMain.java:70) Starting application: robot.RobotTemplate
+[517 INFO] (RobotTemplate.java:36) You v0.11 2016-11-10
+[563 INFO] (CANTalonDevice.java:69) Changed main sensor on 1 to Encoder
+[567 INFO] (CANTalonDevice.java:69) Changed main sensor on 2 to Encoder
+[567 INFO] (CANTalonDevice.java:69) Changed main sensor on 3 to Encoder
+[569 INFO] (CANTalonDevice.java:69) Changed main sensor on 4 to Encoder
+[570 INFO] (CANTalonDevice.java:69) Changed main sensor on 5 to Encoder
+[570 INFO] (CANTalonDevice.java:69) Changed main sensor on 6 to Encoder
+[573 INFO] (CANTalonDevice.java:69) Changed main sensor on 7 to Encoder
+[574 INFO] (CANTalonDevice.java:69) Changed main sensor on 8 to Encoder
+[579 INFO] (DeviceListMain.java:73) Hello, robot.RobotTemplate!
+Logging continues at Fri Nov 11 16:09:49 PST 2016
+Logging continues at Fri Nov 11 16:09:59 PST 2016
+Logging continues at Fri Nov 11 16:10:09 PST 2016
+Logging continues at Fri Nov 11 16:10:19 PST 2016
+Logging continues at Fri Nov 11 16:10:29 PST 2016
+Logging continues at Fri Nov 11 16:10:39 PST 2016
+Logging continues at Fri Nov 11 16:10:49 PST 2016
+Logging continues at Fri Nov 11 16:10:59 PST 2016
+Logging continues at Fri Nov 11 16:11:09 PST 2016
+Logging continues at Fri Nov 11 16:11:19 PST 2016
+Logging continues at Fri Nov 11 16:11:29 PST 2016
+Logging continues at Fri Nov 11 16:11:39 PST 2016
+Logging continues at Fri Nov 11 16:11:49 PST 2016
+Logging continues at Fri Nov 11 16:11:59 PST 2016
+Logging continues at Fri Nov 11 16:12:09 PST 2016
+Logging continues at Fri Nov 11 16:12:19 PST 2016
+Logging continues at Fri Nov 11 16:12:29 PST 2016
+Logging continues at Fri Nov 11 16:12:39 PST 2016
+Logging continues at Fri Nov 11 16:12:49 PST 2016
+Logging continues at Fri Nov 11 16:12:59 PST 2016
+Logging continues at Fri Nov 11 16:13:09 PST 2016
+Logging continues at Fri Nov 11 16:13:19 PST 2016
+Logging continues at Fri Nov 11 16:13:29 PST 2016
+Logging continues at Fri Nov 11 16:13:39 PST 2016
+Logging continues at Fri Nov 11 16:13:49 PST 2016
+Logging continues at Fri Nov 11 16:13:59 PST 2016
+Logging continues at Fri Nov 11 16:14:09 PST 2016
+Logging continues at Fri Nov 11 16:14:19 PST 2016
+Logging continues at Fri Nov 11 16:14:29 PST 2016
+Logging continues at Fri Nov 11 16:14:39 PST 2016
+Logging continues at Fri Nov 11 16:14:49 PST 2016
+Logging continues at Fri Nov 11 16:14:59 PST 2016
+Logging continues at Fri Nov 11 16:15:09 PST 2016
+Logging continues at Fri Nov 11 16:15:19 PST 2016
+Logging continues at Fri Nov 11 16:15:29 PST 2016
+Logging continues at Fri Nov 11 16:15:39 PST 2016
+Logging continues at Fri Nov 11 16:15:49 PST 2016
+Logging continues at Fri Nov 11 16:15:59 PST 2016
+Logging continues at Fri Nov 11 16:16:09 PST 2016
+Logging continues at Fri Nov 11 16:16:19 PST 2016
+Logging continues at Fri Nov 11 16:16:29 PST 2016
+Logging continues at Fri Nov 11 16:16:39 PST 2016
+Logging continues at Fri Nov 11 16:16:49 PST 2016
+Logging continues at Fri Nov 11 16:16:59 PST 2016
+Logging continues at Fri Nov 11 16:17:09 PST 2016
+Logging continues at Fri Nov 11 16:17:19 PST 2016
+Logging continues at Fri Nov 11 16:17:29 PST 2016

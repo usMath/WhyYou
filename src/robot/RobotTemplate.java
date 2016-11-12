@@ -33,7 +33,7 @@ public class RobotTemplate implements FRCApplication {
 	@Override
 	public void setupRobot() throws ExtendedMotorFailureException {
 
-		Logger.info("You v0.11 2016-11-10");
+		Logger.info("You v0.20 2016-11-11");
 		
 		// Right drive train
 		FloatOutput right1 = FRC.talonCAN(1).simpleControl();
@@ -48,6 +48,11 @@ public class RobotTemplate implements FRCApplication {
 		FloatOutput left3 = FRC.talonCAN(6).simpleControl();
 		
 		FloatOutput left = left1.combine(left2).combine(left3).addRamping(0.02f, FRC.constantPeriodic).negate();
+		
+		// Combined drive train
+		FloatOutput drive = left.combine(right);
+    	FloatOutput turnLeft = right.combine(left.negate());
+    	FloatOutput turnRight = left.combine(right.negate());
 		
 		// Arm has lower joint, upper joint, and claw. Similar to human arm (hand = claw).
 		FloatOutput armJointLower = FRC.talonCAN(7).simpleControl();
@@ -92,6 +97,34 @@ public class RobotTemplate implements FRCApplication {
     	leftXJoystick2.send(left);
     	leftXJoystick2.negated().send(right);
     	
+    	//Autonomous testing - will finish sometime
+    	FRC.registerAutonomous(new InstinctModule()
+    	{
+    	    
+    	    protected void autonomousMain() throws Throwable
+    	    {
+    	        
+    	    	drive.set(0.4f);
+    	        waitForTime(1000);
+    	        drive.set(0f);
+    	        waitForTime(250);
+    	        drive.set(-0.4f);
+    	        waitForTime(1000);
+    	        drive.set(0f);
+    	        waitForTime(250);
+    	        drive.set(0.4f);
+    	        waitForTime(1000);
+    	        drive.set(0f);
+    	        waitForTime(250);
+    	        turnLeft.set(0.75f);
+    	        waitForTime(10000);
+    	        drive.set(0f);
+    	        
+    	    }
+    	    
+    	}
+    	
+    	);
 		
 	}
 }
