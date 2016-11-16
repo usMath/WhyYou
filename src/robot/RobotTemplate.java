@@ -95,8 +95,8 @@ public class RobotTemplate implements FRCApplication {
     	button2.send(claw);
     	
     	//Turning the robot - copilot
-    	leftJoystickButton2.toFloat(0f, 0.5f).multipliedBy(leftXJoystick2).send(left);
-    	leftJoystickButton2.toFloat(0f, -0.5f).multipliedBy(leftXJoystick2).send(left);
+    	leftJoystickButton2.toFloat(0f, -0.4f).multipliedBy(leftXJoystick2).send(left);
+    	leftJoystickButton2.toFloat(0f, 0.4f).multipliedBy(leftXJoystick2).send(right);
     	
     	//Autonomous testing - will finish sometime
     	FRC.registerAutonomous(new InstinctModule()
