@@ -8,6 +8,7 @@ import ccre.channel.FloatInput;
 import ccre.channel.FloatOutput;
 import ccre.ctrl.ExtendedMotor.OutputControlMode;
 import ccre.ctrl.ExtendedMotorFailureException;
+import ccre.ctrl.binding.ControlBindingCreator;
 import ccre.drivers.ctre.talon.TalonExtendedMotor;
 import ccre.frc.FRC;
 import ccre.frc.FRCApplication;
@@ -33,7 +34,10 @@ public class RobotTemplate implements FRCApplication {
 	@Override
 	public void setupRobot() throws ExtendedMotorFailureException {
 
-		Logger.info("You v0.23 2016-11-15");
+		Logger.info("You v0.30 2016-12-01");
+		
+		//Control Binding
+		final ControlBindingCreator controlBinding = FRC.controlBinding();
 		
 		// Right drive train
 		FloatOutput right1 = FRC.talonCAN(1).simpleControl();
@@ -48,6 +52,10 @@ public class RobotTemplate implements FRCApplication {
 		FloatOutput left3 = FRC.talonCAN(6).simpleControl();
 		
 		FloatOutput left = left1.combine(left2).combine(left3).addRamping(0.02f, FRC.constantPeriodic).negate();
+		
+		// Shooter
+		FloatOutput flywheel = FRC.talonCAN(9).simpleControl();
+		FloatOutput actuator = FRC.talonCAN(10).simpleControl();
 		
 		// Combined drive train
 		FloatOutput drive = left.combine(right);
@@ -64,24 +72,27 @@ public class RobotTemplate implements FRCApplication {
 		//Driver - Movement
 		
 		//Left side
-    	FloatInput leftYJoystick1 = FRC.joystick1.axis(2).deadzone(0.2f);
+    	FloatInput leftYJoystick1 = controlBinding.addFloat("Left drive train").deadzone(0.2f);
     	//Right side
-    	FloatInput rightYJoystick1 = FRC.joystick1.axis(6).deadzone(0.2f);
+    	FloatInput rightYJoystick1 = controlBinding.addFloat("Right drive train").deadzone(0.2f);
     	
-    	//Copilot - Arm
+    	//Copilot - Arm and Shooting
     	
     	//Lower arm
-    	FloatInput leftYJoystick2 = FRC.joystick2.axis(2).deadzone(0.2f);
+    	FloatInput leftYJoystick2 = controlBinding.addFloat("Lower arm").deadzone(0.2f);
     	//Upper arm
-    	FloatInput rightYJoystick2 = FRC.joystick2.axis(6).deadzone(0.2f);
+    	FloatInput rightYJoystick2 = controlBinding.addFloat("Upper arm").deadzone(0.2f);
     	//Claw
-    	BooleanInput leftButton2 = FRC.joystick2.button(5);
-    	BooleanInput rightButton2 = FRC.joystick2.button(6);
-    	BooleanInput button2 = leftButton2.or(rightButton2);
+    	BooleanInput button2 = controlBinding.addBoolean("Claw activation");
     	
     	//Turning the robot
     	BooleanInput leftJoystickButton2 = FRC.joystick2.button(9);
     	FloatInput leftXJoystick2 = FRC.joystick2.axis(1).deadzone(0.2f);
+    	//For activating control binding
+    	/*
+    	BooleanInput leftJoystickButton2 = controlBinding.addBoolean("Turning activation");
+    	FloatInput leftXJoystick2 = controlBinding.addFloat("Copilot turning").deadzone(0.2f);
+    	*/
     	
     	//Sending controls
     	
