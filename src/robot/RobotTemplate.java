@@ -34,7 +34,7 @@ public class RobotTemplate implements FRCApplication {
 	@Override
 	public void setupRobot() throws ExtendedMotorFailureException {
 
-		Logger.info("You v0.30 2016-12-01");
+		Logger.info("You v0.31 2016-12-01");
 		
 		//Control Binding
 		final ControlBindingCreator controlBinding = FRC.controlBinding();
@@ -84,6 +84,10 @@ public class RobotTemplate implements FRCApplication {
     	FloatInput rightYJoystick2 = controlBinding.addFloat("Upper arm").deadzone(0.2f);
     	//Claw
     	BooleanInput button2 = controlBinding.addBoolean("Claw activation");
+    	//Flywheel
+    	BooleanInput flywheelButton = controlBinding.addBoolean("Flywheel");
+    	//Activator
+    	BooleanInput actuatorButton = controlBinding.addBoolean("Shooter Trigger");
     	
     	//Turning the robot
     	BooleanInput leftJoystickButton2 = FRC.joystick2.button(9);
@@ -93,6 +97,23 @@ public class RobotTemplate implements FRCApplication {
     	BooleanInput leftJoystickButton2 = controlBinding.addBoolean("Turning activation");
     	FloatInput leftXJoystick2 = controlBinding.addFloat("Copilot turning").deadzone(0.2f);
     	*/
+    	
+    	//Events
+    	EventOutput startWind = () -> flywheel.set(0.5f);
+    	EventOutput stopWind = () -> flywheel.set(0f);
+    	EventOutput shoot = () -> {
+    		BooleanCell run = new BooleanCell(true);
+    		new InstinctModule(run)
+    		{
+				protected void autonomousMain() throws Throwable {
+					actuator.set(0.1f);
+					waitForTime(500);
+					actuator.set(0f);
+					run.set(false);
+				}
+    		};
+    	};
+    	EventOutput stopShoot = () -> actuator.set(0f);
     	
     	//Sending controls
     	
@@ -108,6 +129,12 @@ public class RobotTemplate implements FRCApplication {
     	//Turning the robot - copilot
     	leftJoystickButton2.toFloat(0f, -0.4f).multipliedBy(leftXJoystick2).send(left);
     	leftJoystickButton2.toFloat(0f, 0.4f).multipliedBy(leftXJoystick2).send(right);
+    	
+    	//Shooting
+    	flywheelButton.onPress().send(startWind);
+    	flywheelButton.onRelease().send(stopWind);
+    	actuatorButton.onPress().send(shoot);
+    	actuatorButton.onRelease().send(stopShoot);
     	
     	//Autonomous testing - will finish sometime
     	FRC.registerAutonomous(new InstinctModule()
