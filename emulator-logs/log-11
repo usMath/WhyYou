@@ -1,0 +1,39 @@
+Logging began at Mon Dec 12 16:03:22 PST 2016 [0]
+[20 FINE] (ConnectionReceiverThread.java:58) About to listen on 1540
+[526 INFO] (DeviceListMain.java:70) Starting application: robot.RobotTemplate
+[528 INFO] (RobotTemplate.java:37) You v0.41 2016-12-12
+[573 INFO] (CANTalonDevice.java:69) Changed main sensor on 1 to Encoder
+[579 INFO] (CANTalonDevice.java:69) Changed main sensor on 2 to Encoder
+[580 INFO] (CANTalonDevice.java:69) Changed main sensor on 3 to Encoder
+[583 INFO] (CANTalonDevice.java:69) Changed main sensor on 4 to Encoder
+[584 INFO] (CANTalonDevice.java:69) Changed main sensor on 5 to Encoder
+[585 INFO] (CANTalonDevice.java:69) Changed main sensor on 6 to Encoder
+[590 INFO] (CANTalonDevice.java:69) Changed main sensor on 8 to Encoder
+[591 INFO] (CANTalonDevice.java:69) Changed main sensor on 9 to Encoder
+[592 INFO] (CANTalonDevice.java:69) Changed main sensor on 7 to Encoder
+[612 INFO] (DeviceListMain.java:73) Hello, robot.RobotTemplate!
+[8044 INFO] (InstinctModule.java:116) Started autonomous mode.
+[8547 INFO] (InstinctModule.java:118) Completed autonomous mode.
+Logging continues at Mon Dec 12 16:03:32 PST 2016
+Logging continues at Mon Dec 12 16:03:42 PST 2016
+[20043 INFO] (InstinctModule.java:116) Started autonomous mode.
+[20545 INFO] (InstinctModule.java:118) Completed autonomous mode.
+[26297 INFO] (InstinctModule.java:116) Started autonomous mode.
+[26298 INFO] (InstinctModule.java:116) Started autonomous mode.
+[26801 INFO] (InstinctModule.java:118) Completed autonomous mode.
+[26802 INFO] (InstinctModule.java:122) Exited autonomous mode by stop.
+[29252 INFO] (InstinctModule.java:116) Started autonomous mode.
+[29252 INFO] (InstinctModule.java:116) Started autonomous mode.
+[29252 INFO] (InstinctModule.java:116) Started autonomous mode.
+[29753 INFO] (InstinctModule.java:118) Completed autonomous mode.
+[29753 INFO] (InstinctModule.java:122) Exited autonomous mode by stop.
+[29753 INFO] (InstinctModule.java:122) Exited autonomous mode by stop.
+Logging continues at Mon Dec 12 16:03:52 PST 2016
+[36343 INFO] (InstinctModule.java:116) Started autonomous mode.
+[36343 INFO] (InstinctModule.java:116) Started autonomous mode.
+[36344 INFO] (InstinctModule.java:116) Started autonomous mode.
+[36344 INFO] (InstinctModule.java:116) Started autonomous mode.
+[36843 INFO] (InstinctModule.java:118) Completed autonomous mode.
+[36844 INFO] (InstinctModule.java:122) Exited autonomous mode by stop.
+[36844 INFO] (InstinctModule.java:122) Exited autonomous mode by stop.
+[36844 INFO] (InstinctModule.java:122) Exited autonomous mode by stop.

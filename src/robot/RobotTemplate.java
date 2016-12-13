@@ -34,7 +34,7 @@ public class RobotTemplate implements FRCApplication {
 	@Override
 	public void setupRobot() throws ExtendedMotorFailureException {
 
-		Logger.info("You v0.31 2016-12-01");
+		Logger.info("You v0.41 2016-12-12");
 		
 		//Control Binding
 		final ControlBindingCreator controlBinding = FRC.controlBinding();
@@ -54,8 +54,8 @@ public class RobotTemplate implements FRCApplication {
 		FloatOutput left = left1.combine(left2).combine(left3).addRamping(0.02f, FRC.constantPeriodic).negate();
 		
 		// Shooter
-		FloatOutput flywheel = FRC.talonCAN(9).simpleControl();
-		FloatOutput actuator = FRC.talonCAN(10).simpleControl();
+		FloatOutput flywheel = FRC.talonCAN(8).simpleControl();
+		FloatOutput actuator = FRC.talonCAN(9).simpleControl();
 		
 		// Combined drive train
 		FloatOutput drive = left.combine(right);
@@ -64,7 +64,6 @@ public class RobotTemplate implements FRCApplication {
 		
 		// Arm has lower joint, upper joint, and claw. Similar to human arm (hand = claw).
 		FloatOutput armJointLower = FRC.talonCAN(7).simpleControl();
-		FloatOutput armJointUpper = FRC.talonCAN(8).simpleControl();
 		BooleanOutput claw = FRC.solenoid(1);
 		
 		//Controllers
@@ -78,10 +77,8 @@ public class RobotTemplate implements FRCApplication {
     	
     	//Copilot - Arm and Shooting
     	
-    	//Lower arm
+    	//Arm
     	FloatInput leftYJoystick2 = controlBinding.addFloat("Lower arm").deadzone(0.2f);
-    	//Upper arm
-    	FloatInput rightYJoystick2 = controlBinding.addFloat("Upper arm").deadzone(0.2f);
     	//Claw
     	BooleanInput button2 = controlBinding.addBoolean("Claw activation");
     	//Flywheel
@@ -99,10 +96,17 @@ public class RobotTemplate implements FRCApplication {
     	*/
     	
     	//Events
-    	EventOutput startWind = () -> flywheel.set(0.5f);
-    	EventOutput stopWind = () -> flywheel.set(0f);
+    	BooleanCell shouldRun = new BooleanCell(false);
+    	EventOutput startWind = () -> {
+    		flywheel.set(0.5f);
+    		shouldRun.set(true);
+    	};
+    	EventOutput stopWind = () -> {
+    		flywheel.set(0f);
+    		shouldRun.set(false);
+    	};
     	EventOutput shoot = () -> {
-    		BooleanCell run = new BooleanCell(true);
+    		BooleanCell run = new BooleanCell(shouldRun.get());
     		new InstinctModule(run)
     		{
 				protected void autonomousMain() throws Throwable {
@@ -123,7 +127,6 @@ public class RobotTemplate implements FRCApplication {
     	
     	//Arm
     	leftYJoystick2.send(armJointLower);
-    	rightYJoystick2.send(armJointUpper);
     	button2.send(claw);
     	
     	//Turning the robot - copilot
