@@ -34,7 +34,7 @@ public class RobotTemplate implements FRCApplication {
 	@Override
 	public void setupRobot() throws ExtendedMotorFailureException {
 
-		Logger.info("You v0.42 2016-12-13");
+		Logger.info("You v0.43 2016-12-14");
 		
 		//Control Binding
 		final ControlBindingCreator controlBinding = FRC.controlBinding();
@@ -55,7 +55,7 @@ public class RobotTemplate implements FRCApplication {
 		FloatOutput left = left1.combine(left2).combine(left3).addRamping(0.02f, FRC.constantPeriodic).negate();
 		
 		// Shooter
-		FloatOutput flywheel = FRC.talon(0).negate();
+		FloatOutput flywheel = FRC.talon(0);
 		FloatOutput actuator = FRC.talon(1);
 		
 		// Combined drive train
