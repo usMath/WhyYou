@@ -41,16 +41,16 @@ public class RobotTemplate implements FRCApplication {
 		
 		//x234567
 		// Right drive train (1, x, x)
-		FloatOutput right1 = FRC.talonCAN(14).simpleControl();
-		FloatOutput right2 = FRC.talonCAN(14).simpleControl();
-		FloatOutput right3 = FRC.talonCAN(14).simpleControl();
+		FloatOutput right1 = FRC.talonCAN(1).simpleControl();
+		FloatOutput right2 = FRC.talonCAN(1).simpleControl();
+		FloatOutput right3 = FRC.talonCAN(1).simpleControl();
 		
 		FloatOutput right = right1.combine(right2).combine(right3).addRamping(0.02f, FRC.constantPeriodic);
 		
 		// Left drive train (0, 8, 9)
-		FloatOutput left1 = FRC.talonCAN(15).simpleControl();
-		FloatOutput left2 = FRC.talonCAN(15).simpleControl();
-		FloatOutput left3 = FRC.talonCAN(15).simpleControl();
+		FloatOutput left1 = FRC.talonCAN(0).simpleControl();
+		FloatOutput left2 = FRC.talonCAN(8).simpleControl();
+		FloatOutput left3 = FRC.talonCAN(9).simpleControl();
 		
 		FloatOutput left = left1.combine(left2).combine(left3).addRamping(0.02f, FRC.constantPeriodic).negate();
 		
@@ -99,7 +99,7 @@ public class RobotTemplate implements FRCApplication {
     	//Events
     	BooleanCell shouldRun = new BooleanCell(false);
     	EventOutput startWind = () -> {
-    		flywheel.set(1f);
+    		flywheel.set(0.5f);
     		shouldRun.set(true);
     	};
     	EventOutput stopWind = () -> {
@@ -111,7 +111,7 @@ public class RobotTemplate implements FRCApplication {
     		new InstinctModule(run)
     		{
 				protected void autonomousMain() throws Throwable {
-					actuator.set(1f);
+					actuator.set(0.25f);
 					waitForTime(500);
 					actuator.set(0f);
 					run.set(false);
