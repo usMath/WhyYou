@@ -1,0 +1,23 @@
+Logging began at Fri Dec 16 11:51:27 PST 2016 [0]
+[25 FINE] (ConnectionReceiverThread.java:58) About to listen on 1540
+[526 INFO] (DeviceListMain.java:70) Starting application: robot.RobotTemplate
+[528 INFO] (RobotTemplate.java:37) You v0.43 2016-12-14
+[554 INFO] (CANTalonDevice.java:69) Changed main sensor on 1 to Encoder
+[559 WARNING] (NativeMethodAccessorImpl.java) Init failed
+java.lang.IllegalArgumentException: Invalid CAN id: 1024
+	at ccre.frc.devices.CANTalonDevice.<init>(CANTalonDevice.java:591)
+	at ccre.frc.DeviceBasedImplementation.makeCANTalon(DeviceBasedImplementation.java:176)
+	at ccre.frc.FRC.talonCAN(FRC.java:620)
+	at robot.RobotTemplate.setupRobot(RobotTemplate.java:45)
+	at ccre.frc.DeviceListMain.emulate(DeviceListMain.java:71)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at ccre.deployment.DepEmulator.emulate(DepEmulator.java:47)
+	at deployment.Deployment.emulate(Deployment.java:57)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at ccre.deployment.DispatchEntry.main(DispatchEntry.java:52)

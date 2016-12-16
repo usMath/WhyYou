@@ -34,23 +34,22 @@ public class RobotTemplate implements FRCApplication {
 	@Override
 	public void setupRobot() throws ExtendedMotorFailureException {
 
-		Logger.info("You v0.43 2016-12-14");
+		Logger.info("You v0.44 2016-12-16");
 		
 		//Control Binding
 		final ControlBindingCreator controlBinding = FRC.controlBinding();
 		
-		//x234567
-		// Right drive train (1, x, x)
-		FloatOutput right1 = FRC.talonCAN(1).simpleControl();
-		FloatOutput right2 = FRC.talonCAN(1).simpleControl();
-		FloatOutput right3 = FRC.talonCAN(1).simpleControl();
+		// Right drive train (4, 5, 6)
+		FloatOutput right1 = FRC.talonCAN(4).simpleControl();
+		FloatOutput right2 = FRC.talonCAN(5).simpleControl();
+		FloatOutput right3 = FRC.talonCAN(6).simpleControl();
 		
 		FloatOutput right = right1.combine(right2).combine(right3).addRamping(0.02f, FRC.constantPeriodic);
 		
-		// Left drive train (0, 8, 9)
-		FloatOutput left1 = FRC.talonCAN(0).simpleControl();
-		FloatOutput left2 = FRC.talonCAN(8).simpleControl();
-		FloatOutput left3 = FRC.talonCAN(9).simpleControl();
+		// Left drive train (1, 2, 3)
+		FloatOutput left1 = FRC.talonCAN(1).simpleControl();
+		FloatOutput left2 = FRC.talonCAN(2).simpleControl();
+		FloatOutput left3 = FRC.talonCAN(3).simpleControl();
 		
 		FloatOutput left = left1.combine(left2).combine(left3).addRamping(0.02f, FRC.constantPeriodic).negate();
 		
