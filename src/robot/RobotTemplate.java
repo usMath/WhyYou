@@ -34,7 +34,7 @@ public class RobotTemplate implements FRCApplication {
 	@Override
 	public void setupRobot() throws ExtendedMotorFailureException {
 
-		Logger.info("You v0.50 2016-12-16");
+		Logger.info("You v0.60 2016-12-17");
 		
 		//Control Binding
 		final ControlBindingCreator controlBinding = FRC.controlBinding();
@@ -75,11 +75,15 @@ public class RobotTemplate implements FRCApplication {
     	FloatInput leftYJoystick1 = controlBinding.addFloat("Left drive train").deadzone(0.2f);
     	//Right side
     	FloatInput rightYJoystick1 = controlBinding.addFloat("Right drive train").deadzone(0.2f);
+    	// Move backwards
+    	FloatInput backwards = controlBinding.addFloat("Backwards").deadzone(0.2f);
+    	// Move forwards
+    	FloatInput forwards = controlBinding.addFloat("Forwards").deadzone(0.2f).minus(backwards);
     	
     	//Copilot - Arm and Shooting
     	
     	//Arm
-    	FloatInput leftYJoystick2 = controlBinding.addFloat("Arm").deadzone(0.2f);
+    	FloatInput leftYJoystick2 = controlBinding.addFloat("Arm").deadzone(0.1f);
     	BooleanInput armButtonOn = controlBinding.addBoolean("Arm activation");
     	BooleanInput armButtonOff = controlBinding.addBoolean("Arm deactivation");
     	//Claw
@@ -92,7 +96,7 @@ public class RobotTemplate implements FRCApplication {
     	
     	//Turning the robot
     	BooleanInput leftJoystickButton2 = FRC.joystick2.button(9);
-    	FloatInput leftXJoystick2 = FRC.joystick2.axis(1).deadzone(0.2f);
+    	FloatInput leftXJoystick2 = FRC.joystick2.axis(1).deadzone(0.7f);
     	//For activating control binding
     	/*
     	BooleanInput leftJoystickButton2 = controlBinding.addBoolean("Turning activation");
@@ -110,7 +114,7 @@ public class RobotTemplate implements FRCApplication {
     	};
     	
     	EventOutput openArm = () -> {
-    		armJoint.set(0.05f);
+    		armJoint.set(-0.12f);
     	};
     	EventOutput closeArm = () -> {
     		armJoint.set(0f);
@@ -144,6 +148,7 @@ public class RobotTemplate implements FRCApplication {
     	//Drive train
     	leftYJoystick1.send(left);
     	rightYJoystick1.send(right);
+    	forwards.send(drive);
     	
     	//Arm
     	leftYJoystick2.send(armJoint);
@@ -176,23 +181,35 @@ public class RobotTemplate implements FRCApplication {
     	    	armJoint.set(0f);
     	    	clawA.set(false);
     	    	clawB.set(true);
-    	    	/*
+    	    	armJoint.set(-0.2f);
+    	    	waitForTime(500);
+    	    	armJoint.set(-0.12f);
+    	    	turnLeft.set(0.25f);
+    	    	waitForTime(400);
+    	    	turnLeft.set(0f);
     	    	drive.set(0.4f);
-    	        waitForTime(1000);
-    	        drive.set(0f);
-    	        waitForTime(250);
-    	        drive.set(-0.4f);
-    	        waitForTime(1000);
-    	        drive.set(0f);
-    	        waitForTime(250);
-    	        drive.set(0.4f);
-    	        waitForTime(1000);
-    	        drive.set(0f);
-    	        waitForTime(250);
-    	        turnLeft.set(0.75f);
-    	        waitForTime(10000);
-    	        drive.set(0f);
-    	        */
+    	    	waitForTime(1000);
+    	    	drive.set(0f);
+    	    	armJoint.set(0.2f);
+    	    	waitForTime(300);
+    	    	armJoint.set(0f);
+    	    	clawA.set(true);
+    	    	clawB.set(false);
+    	    	armJoint.set(-0.2f);
+    	    	waitForTime(500);
+    	    	armJoint.set(-0.12f);
+    	    	drive.set(-0.2f);
+    	    	waitForTime(500);
+    	    	drive.set(0f);
+    	    	turnLeft.set(0.25f);
+    	    	waitForTime(200);
+    	    	turnLeft.set(0);
+    	    	left.set(0.4f);
+    	    	right.set(0.3f);
+    	    	waitForTime(1000);
+    	    	left.set(0f);
+    	    	right.set(0f);
+    	    	
     	        //Actual code:
     	        
     	        /*
