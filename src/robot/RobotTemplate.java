@@ -34,7 +34,7 @@ public class RobotTemplate implements FRCApplication {
 	@Override
 	public void setupRobot() throws ExtendedMotorFailureException {
 
-		Logger.info("You v0.60 2016-12-17");
+		Logger.info("You v0.61 2016-12-17");
 		
 		//Control Binding
 		final ControlBindingCreator controlBinding = FRC.controlBinding();
@@ -72,9 +72,9 @@ public class RobotTemplate implements FRCApplication {
 		//Driver - Movement
 		
 		//Left side
-    	FloatInput leftYJoystick1 = controlBinding.addFloat("Left drive train").deadzone(0.2f);
+    	FloatInput leftTrain = controlBinding.addFloat("Left drive train").deadzone(0.2f);
     	//Right side
-    	FloatInput rightYJoystick1 = controlBinding.addFloat("Right drive train").deadzone(0.2f);
+    	FloatInput rightTrain = controlBinding.addFloat("Right drive train").deadzone(0.2f);
     	// Move backwards
     	FloatInput backwards = controlBinding.addFloat("Backwards").deadzone(0.2f);
     	// Move forwards
@@ -83,7 +83,7 @@ public class RobotTemplate implements FRCApplication {
     	//Copilot - Arm and Shooting
     	
     	//Arm
-    	FloatInput leftYJoystick2 = controlBinding.addFloat("Arm").deadzone(0.1f);
+    	FloatInput arm = controlBinding.addFloat("Arm").deadzone(0.1f);
     	BooleanInput armButtonOn = controlBinding.addBoolean("Arm activation");
     	BooleanInput armButtonOff = controlBinding.addBoolean("Arm deactivation");
     	//Claw
@@ -95,13 +95,8 @@ public class RobotTemplate implements FRCApplication {
     	BooleanInput actuatorButton = controlBinding.addBoolean("Shooter Trigger");
     	
     	//Turning the robot
-    	BooleanInput leftJoystickButton2 = FRC.joystick2.button(9);
-    	FloatInput leftXJoystick2 = FRC.joystick2.axis(1).deadzone(0.7f);
-    	//For activating control binding
-    	/*
-    	BooleanInput leftJoystickButton2 = controlBinding.addBoolean("Turning activation");
-    	FloatInput leftXJoystick2 = controlBinding.addFloat("Copilot turning").deadzone(0.2f);
-    	*/
+    	BooleanInput turnToggle = controlBinding.addBoolean("Copilot Turning Toggle");
+    	FloatInput copilotTurn = controlBinding.addFloat("Turning").deadzone(0.2f);
     	
     	//Events
     	EventOutput openClaw = () -> {
@@ -146,20 +141,20 @@ public class RobotTemplate implements FRCApplication {
     	//Sending controls
     	
     	//Drive train
-    	leftYJoystick1.send(left);
-    	rightYJoystick1.send(right);
+    	leftTrain.send(left);
+    	rightTrain.send(right);
     	forwards.send(drive);
     	
     	//Arm
-    	leftYJoystick2.send(armJoint);
+    	arm.send(armJoint);
     	armButtonOn.onPress(openArm);
     	armButtonOff.onPress(closeArm);
     	buttonO.onPress(openClaw);
     	buttonC.onPress(closeClaw);
     	
     	//Turning the robot - copilot
-    	leftJoystickButton2.toFloat(0f, -0.4f).multipliedBy(leftXJoystick2).send(left);
-    	leftJoystickButton2.toFloat(0f, 0.4f).multipliedBy(leftXJoystick2).send(right);
+    	turnToggle.toFloat(0f, -0.4f).multipliedBy(copilotTurn).send(left);
+    	turnToggle.toFloat(0f, 0.4f).multipliedBy(copilotTurn).send(right);
     	
     	//Shooting
     	flywheelButton.onPress().send(startWind);
