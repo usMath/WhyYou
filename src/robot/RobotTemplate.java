@@ -34,7 +34,7 @@ public class RobotTemplate implements FRCApplication {
 	@Override
 	public void setupRobot() throws ExtendedMotorFailureException {
 
-		Logger.info("You v0.61 2016-12-17");
+		Logger.info("You v0.62 2016-12-28");
 		
 		//Control Binding
 		final ControlBindingCreator controlBinding = FRC.controlBinding();
@@ -63,7 +63,7 @@ public class RobotTemplate implements FRCApplication {
     	FloatOutput turnRight = left.combine(right.negate());
 		
 		// Arm has lower joint, upper joint, and claw. Similar to human arm (hand = claw).
-		FloatOutput armJoint = FRC.talon(2).negate();
+		FloatOutput armJoint = FRC.talon(2);
 		BooleanOutput clawA = FRC.solenoid(4);
 		BooleanOutput clawB = FRC.solenoid(5);
 		
@@ -78,7 +78,7 @@ public class RobotTemplate implements FRCApplication {
     	// Move backwards
     	FloatInput backwards = controlBinding.addFloat("Backwards").deadzone(0.2f);
     	// Move forwards
-    	FloatInput forwards = controlBinding.addFloat("Forwards").deadzone(0.2f).minus(backwards);
+    	FloatInput forwards = controlBinding.addFloat("Forwards").deadzone(0.2f);
     	
     	//Copilot - Arm and Shooting
     	
@@ -109,7 +109,7 @@ public class RobotTemplate implements FRCApplication {
     	};
     	
     	EventOutput openArm = () -> {
-    		armJoint.set(-0.12f);
+    		armJoint.set(0.12f);
     	};
     	EventOutput closeArm = () -> {
     		armJoint.set(0f);
@@ -143,7 +143,8 @@ public class RobotTemplate implements FRCApplication {
     	//Drive train
     	leftTrain.send(left);
     	rightTrain.send(right);
-    	forwards.send(drive);
+    	backwards.send(drive);
+    	forwards.send(drive.negate());
     	
     	//Arm
     	arm.send(armJoint);
