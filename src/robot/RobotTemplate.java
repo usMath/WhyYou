@@ -34,7 +34,7 @@ public class RobotTemplate implements FRCApplication {
 	@Override
 	public void setupRobot() throws ExtendedMotorFailureException {
 
-		Logger.info("You v0.64 2016-12-28");
+		Logger.info("You v0.70 2016-12-28");
 		
 		//Control Binding
 		final ControlBindingCreator controlBinding = FRC.controlBinding();
@@ -85,7 +85,7 @@ public class RobotTemplate implements FRCApplication {
     	//Arm
     	FloatInput arm = controlBinding.addFloat("Arm").deadzone(0.1f);
     	BooleanInput armButtonOn = controlBinding.addBoolean("Arm activation");
-    	BooleanInput armButtonOff = controlBinding.addBoolean("Arm deactivation");
+    	BooleanInput armButtonHigh = controlBinding.addBoolean("Raise Arm");
     	//Claw
     	BooleanInput buttonO = controlBinding.addBoolean("Claw activation");
     	BooleanInput buttonC = controlBinding.addBoolean("Claw deactivation");
@@ -95,8 +95,11 @@ public class RobotTemplate implements FRCApplication {
     	BooleanInput actuatorButton = controlBinding.addBoolean("Shooter Trigger");
     	
     	//Turning the robot
-    	BooleanInput turnToggle = controlBinding.addBoolean("Copilot Turning Toggle");
-    	FloatInput copilotTurn = controlBinding.addFloat("Turning").deadzone(0.2f);
+    	BooleanInput turnToggleA = controlBinding.addBoolean("Copilot Turning Toggle 1");
+    	BooleanInput turnToggleB = controlBinding.addBoolean("Copilot Turning Toggle 2");
+    	BooleanInput turnToggle = turnToggleA.or(turnToggleB);
+    	FloatInput copilotTurnR = controlBinding.addFloat("Turning Right").deadzone(0.2f);
+    	FloatInput copilotTurnL = controlBinding.addFloat("Turning Left").deadzone(0.2f);
     	
     	//Events
     	EventOutput openClaw = () -> {
@@ -108,8 +111,11 @@ public class RobotTemplate implements FRCApplication {
     		clawB.set(true);
     	};
     	
+    	EventOutput raiseArm = () -> {
+    		armJoint.set(0.7f);
+    	};
     	EventOutput openArm = () -> {
-    		armJoint.set(0.12f);
+    		armJoint.set(0.15f);
     	};
     	EventOutput closeArm = () -> {
     		armJoint.set(0f);
@@ -143,19 +149,19 @@ public class RobotTemplate implements FRCApplication {
     	//Drive train
     	leftTrain.send(left);
     	rightTrain.send(right);
-    	backwards.send(drive);
-    	forwards.send(drive.negate());
+    	turnToggle.toFloat(1f, 0f).multipliedBy(backwards).send(drive);
+    	turnToggle.toFloat(-1f, 0f).multipliedBy(forwards).send(drive);
     	
     	//Arm
-    	arm.send(armJoint);
+    	arm.multipliedBy(0.5f).send(armJoint);
     	armButtonOn.onPress(openArm);
-    	armButtonOff.onPress(closeArm);
+    	armButtonHigh.onPress(raiseArm);
     	buttonO.onPress(openClaw);
     	buttonC.onPress(closeClaw);
     	
     	//Turning the robot - copilot
-    	turnToggle.toFloat(0f, -0.4f).multipliedBy(copilotTurn).send(left);
-    	turnToggle.toFloat(0f, 0.4f).multipliedBy(copilotTurn).send(right);
+    	turnToggle.toFloat(0f, -0.4f).multipliedBy(copilotTurnR.minus(copilotTurnL)).send(left);
+    	turnToggle.toFloat(0f, 0.4f).multipliedBy(copilotTurnR.minus(copilotTurnL)).send(right);
     	
     	//Shooting
     	flywheelButton.onPress().send(startWind);
@@ -172,10 +178,16 @@ public class RobotTemplate implements FRCApplication {
     	        
     	    	clawA.set(true);
     	    	clawB.set(false);
-    	    	armJoint.set(0.3f);
+    	    	armJoint.set(-0.9f);
+    	    	waitForTime(450);
+    	    	armJoint.set(-0.1f);
     	    	waitForTime(400);
+    	    	armJoint.set(0f);
+    	    	waitForTime(1000);
+    	    	armJoint.set(0.5f);
+    	    	waitForTime(1000);
     	    	armJoint.set(-0.2f);
-    	    	waitForTime(600);
+    	    	waitForTime(666);
     	    	armJoint.set(0f);
     	    	clawA.set(false);
     	    	clawB.set(true);

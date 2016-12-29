@@ -1,0 +1,11 @@
+Logging began at Wed Dec 28 16:49:59 PST 2016 [0]
+[16 FINE] (ConnectionReceiverThread.java:58) About to listen on 1540
+[517 INFO] (DeviceListMain.java:70) Starting application: robot.RobotTemplate
+[519 INFO] (RobotTemplate.java:37) You v0.64 2016-12-28
+[549 INFO] (CANTalonDevice.java:69) Changed main sensor on 4 to Encoder
+[553 INFO] (CANTalonDevice.java:69) Changed main sensor on 5 to Encoder
+[554 INFO] (CANTalonDevice.java:69) Changed main sensor on 6 to Encoder
+[556 INFO] (CANTalonDevice.java:69) Changed main sensor on 1 to Encoder
+[557 INFO] (CANTalonDevice.java:69) Changed main sensor on 2 to Encoder
+[557 INFO] (CANTalonDevice.java:69) Changed main sensor on 3 to Encoder
+[577 INFO] (DeviceListMain.java:73) Hello, robot.RobotTemplate!
