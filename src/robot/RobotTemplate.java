@@ -34,7 +34,7 @@ public class RobotTemplate implements FRCApplication {
 	@Override
 	public void setupRobot() throws ExtendedMotorFailureException {
 
-		Logger.info("You v0.70 2016-12-28");
+		Logger.info("You v0.71 2016-12-29");
 		
 		//Control Binding
 		final ControlBindingCreator controlBinding = FRC.controlBinding();
@@ -194,10 +194,12 @@ public class RobotTemplate implements FRCApplication {
     	    	armJoint.set(0.7f);
     	    	waitForTime(1000);
     	    	armJoint.set(0.12f);
-    	    	/*
+    	    	
     	    	turnLeft.set(0.25f);
     	    	waitForTime(400);
     	    	turnLeft.set(0f);
+    	    	waitForTime(5000);
+    	    	/*
     	    	drive.set(0.4f);
     	    	waitForTime(1000);
     	    	drive.set(0f);
@@ -214,9 +216,11 @@ public class RobotTemplate implements FRCApplication {
     	    	drive.set(-0.2f);
     	    	waitForTime(500);
     	    	drive.set(0f);
+    	    	*/
     	    	turnLeft.set(0.25f);
     	    	waitForTime(200);
     	    	turnLeft.set(0);
+    	    	/*
     	    	left.set(0.4f);
     	    	right.set(0.3f);
     	    	waitForTime(1000);
