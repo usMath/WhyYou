@@ -8,6 +8,7 @@ import ccre.channel.FloatInput;
 import ccre.channel.FloatOutput;
 import ccre.ctrl.ExtendedMotor.OutputControlMode;
 import ccre.ctrl.ExtendedMotorFailureException;
+import ccre.ctrl.PIDController;
 import ccre.ctrl.binding.ControlBindingCreator;
 import ccre.drivers.ctre.talon.TalonExtendedMotor;
 import ccre.frc.FRC;
@@ -34,7 +35,7 @@ public class RobotTemplate implements FRCApplication {
 	@Override
 	public void setupRobot() throws ExtendedMotorFailureException {
 
-		Logger.info("You v0.71 2016-12-29");
+		Logger.info("You v0.72 2016-12-29");
 		
 		//Control Binding
 		final ControlBindingCreator controlBinding = FRC.controlBinding();
@@ -59,8 +60,8 @@ public class RobotTemplate implements FRCApplication {
 		
 		// Combined drive train
 		FloatOutput drive = left.combine(right);
-    	FloatOutput turnLeft = right.combine(left.negate());
-    	FloatOutput turnRight = left.combine(right.negate());
+    	FloatOutput turnRight = right.combine(left.negate());
+    	FloatOutput turnLeft = left.combine(right.negate());
 		
 		// Arm has lower joint, upper joint, and claw. Similar to human arm (hand = claw).
 		FloatOutput armJoint = FRC.talon(2);
@@ -89,6 +90,7 @@ public class RobotTemplate implements FRCApplication {
     	//Claw
     	BooleanInput buttonO = controlBinding.addBoolean("Claw activation");
     	BooleanInput buttonC = controlBinding.addBoolean("Claw deactivation");
+    	BooleanInput buttonT = controlBinding.addBoolean("Claw toggling");
     	//Flywheel
     	BooleanInput flywheelButton = controlBinding.addBoolean("Flywheel");
     	//Activator
@@ -102,13 +104,34 @@ public class RobotTemplate implements FRCApplication {
     	FloatInput copilotTurnL = controlBinding.addFloat("Turning Left").deadzone(0.2f);
     	
     	//Events
+    	BooleanCell clawIsOpened = new BooleanCell(false);
     	EventOutput openClaw = () -> {
     		clawA.set(true);
     		clawB.set(false);
+    		clawIsOpened.set(true);
     	};
     	EventOutput closeClaw = () -> {
     		clawA.set(false);
     		clawB.set(true);
+    		clawIsOpened.set(false);
+    	};
+    	EventOutput toggleClaw = () -> {
+    		if (clawIsOpened.get())
+    		{
+    			
+    			clawA.set(false);
+        		clawB.set(true);
+        		clawIsOpened.set(false);
+    			
+    		}
+    		else
+    		{
+    			
+    			clawA.set(true);
+        		clawB.set(false);
+        		clawIsOpened.set(true);
+    			
+    		}
     	};
     	
     	EventOutput raiseArm = () -> {
@@ -136,7 +159,7 @@ public class RobotTemplate implements FRCApplication {
     		{
 				protected void autonomousMain() throws Throwable {
 					actuator.set(0.25f);
-					waitForTime(500);
+					waitForTime(666);
 					actuator.set(0f);
 					run.set(false);
 				}
@@ -147,10 +170,10 @@ public class RobotTemplate implements FRCApplication {
     	//Sending controls
     	
     	//Drive train
-    	leftTrain.send(left);
-    	rightTrain.send(right);
-    	turnToggle.toFloat(1f, 0f).multipliedBy(backwards).send(drive);
-    	turnToggle.toFloat(-1f, 0f).multipliedBy(forwards).send(drive);
+    	leftTrain.plus(rightTrain.multipliedBy(0.4f)).multipliedBy(0.7f).send(left);
+    	rightTrain.plus(leftTrain.multipliedBy(0.4f)).multipliedBy(0.7f).send(right);
+    	turnToggle.toFloat(0.6f, 0f).multipliedBy(backwards).send(drive);
+    	turnToggle.toFloat(-0.6f, 0f).multipliedBy(forwards).send(drive);
     	
     	//Arm
     	arm.multipliedBy(0.5f).send(armJoint);
@@ -158,6 +181,7 @@ public class RobotTemplate implements FRCApplication {
     	armButtonHigh.onPress(raiseArm);
     	buttonO.onPress(openClaw);
     	buttonC.onPress(closeClaw);
+    	buttonT.onPress(toggleClaw);
     	
     	//Turning the robot - copilot
     	turnToggle.toFloat(0f, -0.4f).multipliedBy(copilotTurnR.minus(copilotTurnL)).send(left);
@@ -175,15 +199,18 @@ public class RobotTemplate implements FRCApplication {
     	    
     	    protected void autonomousMain() throws Throwable
     	    {
-    	        
+    	    	/*
+    	    	FRC.en e;
+    	    	
+    	    	PIDController p = new PIDController();
+    	    	*/
+    	    	
     	    	clawA.set(true);
     	    	clawB.set(false);
-    	    	armJoint.set(-0.9f);
-    	    	waitForTime(450);
-    	    	armJoint.set(-0.1f);
+    	    	armJoint.set(-1.0f);
+    	    	waitForTime(500);
+    	    	armJoint.set(-0.2f);
     	    	waitForTime(400);
-    	    	armJoint.set(0f);
-    	    	waitForTime(1000);
     	    	armJoint.set(0.5f);
     	    	waitForTime(1000);
     	    	armJoint.set(-0.2f);
@@ -191,42 +218,45 @@ public class RobotTemplate implements FRCApplication {
     	    	armJoint.set(0f);
     	    	clawA.set(false);
     	    	clawB.set(true);
-    	    	armJoint.set(0.7f);
+    	    	armJoint.set(0.8f);
     	    	waitForTime(1000);
     	    	armJoint.set(0.12f);
-    	    	
-    	    	turnLeft.set(0.25f);
+    	    	drive.set(0.6f);
+    	    	waitForTime(1500);
+    	    	drive.set(0.3f);
+    	    	waitForTime(500);
+    	    	drive.set(-0.4f);
     	    	waitForTime(400);
-    	    	turnLeft.set(0f);
-    	    	waitForTime(5000);
-    	    	/*
-    	    	drive.set(0.4f);
-    	    	waitForTime(1000);
     	    	drive.set(0f);
-    	    	*/
+    	    	waitForTime(100);
+    	    	turnLeft.set(0.5f);
+    	    	waitForTime(1000);
+    	    	turnLeft.set(0f);
+    	    	waitForTime(100);
+    	    	drive.set(-0.4f);
+    	    	waitForTime(900);
+    	    	drive.set(0f);
     	    	armJoint.set(-0.2f);
-    	    	waitForTime(600);
+    	    	waitForTime(800);
     	    	armJoint.set(0f);
     	    	clawA.set(true);
     	    	clawB.set(false);
     	    	armJoint.set(0.7f);
-    	    	waitForTime(1000);
+    	    	waitForTime(700);
     	    	armJoint.set(0.12f);
-    	    	/*
-    	    	drive.set(-0.2f);
+    	    	drive.set(0.4f);
     	    	waitForTime(500);
     	    	drive.set(0f);
-    	    	*/
-    	    	turnLeft.set(0.25f);
-    	    	waitForTime(200);
+    	    	turnLeft.set(0.5f);
+    	    	waitForTime(600);
     	    	turnLeft.set(0);
-    	    	/*
-    	    	left.set(0.4f);
-    	    	right.set(0.3f);
+    	    	left.set(-0.6f);
+    	    	right.set(-0.4f);
+    	    	waitForTime(4000);
+    	    	drive.set(-0.6f);
     	    	waitForTime(1000);
-    	    	left.set(0f);
-    	    	right.set(0f);
-    	    	*/
+    	    	drive.set(0f);
+    	    	
     	        //Actual code:
     	        
     	        /*
