@@ -1,0 +1,86 @@
+Logging began at Fri Dec 30 08:33:57 PST 2016 [0]
+[18 FINE] (ConnectionReceiverThread.java:58) About to listen on 1540
+[519 INFO] (DeviceListMain.java:70) Starting application: robot.RobotTemplate
+[522 INFO] (RobotTemplate.java:38) You v0.80 2016-12-30
+[555 INFO] (CANTalonDevice.java:69) Changed main sensor on 4 to Encoder
+[561 INFO] (CANTalonDevice.java:69) Changed main sensor on 5 to Encoder
+[561 INFO] (CANTalonDevice.java:69) Changed main sensor on 6 to Encoder
+[564 INFO] (CANTalonDevice.java:69) Changed main sensor on 1 to Encoder
+[565 INFO] (CANTalonDevice.java:69) Changed main sensor on 2 to Encoder
+[565 INFO] (CANTalonDevice.java:69) Changed main sensor on 3 to Encoder
+[589 INFO] (DeviceListMain.java:73) Hello, robot.RobotTemplate!
+Logging continues at Fri Dec 30 08:34:07 PST 2016
+[17232 INFO] (InstinctModule.java:116) Started autonomous mode.
+Logging continues at Fri Dec 30 08:34:17 PST 2016
+Logging continues at Fri Dec 30 08:34:27 PST 2016
+[32852 INFO] (InstinctModule.java:118) Completed autonomous mode.
+Logging continues at Fri Dec 30 08:34:37 PST 2016
+Logging continues at Fri Dec 30 08:34:47 PST 2016
+Logging continues at Fri Dec 30 08:34:57 PST 2016
+Logging continues at Fri Dec 30 08:35:07 PST 2016
+Logging continues at Fri Dec 30 08:35:17 PST 2016
+Logging continues at Fri Dec 30 08:35:27 PST 2016
+Logging continues at Fri Dec 30 08:35:37 PST 2016
+Logging continues at Fri Dec 30 08:35:47 PST 2016
+Logging continues at Fri Dec 30 08:35:57 PST 2016
+Logging continues at Fri Dec 30 08:36:07 PST 2016
+Logging continues at Fri Dec 30 08:36:17 PST 2016
+Logging continues at Fri Dec 30 08:36:27 PST 2016
+Logging continues at Fri Dec 30 08:36:37 PST 2016
+Logging continues at Fri Dec 30 08:36:47 PST 2016
+Logging continues at Fri Dec 30 08:36:57 PST 2016
+Logging continues at Fri Dec 30 08:37:07 PST 2016
+Logging continues at Fri Dec 30 08:37:17 PST 2016
+Logging continues at Fri Dec 30 08:37:27 PST 2016
+Logging continues at Fri Dec 30 08:37:37 PST 2016
+Logging continues at Fri Dec 30 08:37:47 PST 2016
+Logging continues at Fri Dec 30 08:37:57 PST 2016
+Logging continues at Fri Dec 30 08:38:07 PST 2016
+Logging continues at Fri Dec 30 08:38:17 PST 2016
+Logging continues at Fri Dec 30 08:38:27 PST 2016
+Logging continues at Fri Dec 30 08:38:37 PST 2016
+Logging continues at Fri Dec 30 08:38:47 PST 2016
+Logging continues at Fri Dec 30 08:38:57 PST 2016
+Logging continues at Fri Dec 30 08:39:07 PST 2016
+Logging continues at Fri Dec 30 08:39:17 PST 2016
+Logging continues at Fri Dec 30 08:39:27 PST 2016
+Logging continues at Fri Dec 30 08:39:37 PST 2016
+Logging continues at Fri Dec 30 08:39:47 PST 2016
+Logging continues at Fri Dec 30 08:39:57 PST 2016
+Logging continues at Fri Dec 30 08:40:07 PST 2016
+Logging continues at Fri Dec 30 08:40:17 PST 2016
+Logging continues at Fri Dec 30 08:40:27 PST 2016
+Logging continues at Fri Dec 30 08:40:37 PST 2016
+Logging continues at Fri Dec 30 08:40:47 PST 2016
+Logging continues at Fri Dec 30 08:40:57 PST 2016
+Logging continues at Fri Dec 30 08:41:07 PST 2016
+Logging continues at Fri Dec 30 08:41:17 PST 2016
+Logging continues at Fri Dec 30 08:41:27 PST 2016
+Logging continues at Fri Dec 30 08:41:37 PST 2016
+Logging continues at Fri Dec 30 08:41:47 PST 2016
+Logging continues at Fri Dec 30 08:41:57 PST 2016
+Logging continues at Fri Dec 30 08:42:07 PST 2016
+Logging continues at Fri Dec 30 08:42:17 PST 2016
+Logging continues at Fri Dec 30 08:42:27 PST 2016
+Logging continues at Fri Dec 30 08:42:37 PST 2016
+Logging continues at Fri Dec 30 08:42:47 PST 2016
+Logging continues at Fri Dec 30 08:42:57 PST 2016
+Logging continues at Fri Dec 30 08:43:07 PST 2016
+Logging continues at Fri Dec 30 08:43:17 PST 2016
+Logging continues at Fri Dec 30 08:43:27 PST 2016
+Logging continues at Fri Dec 30 08:43:37 PST 2016
+Logging continues at Fri Dec 30 08:50:37 PST 2016
+Logging continues at Fri Dec 30 08:50:47 PST 2016
+Logging continues at Fri Dec 30 08:50:57 PST 2016
+Logging continues at Fri Dec 30 09:11:07 PST 2016
+Logging continues at Fri Dec 30 09:11:17 PST 2016
+Logging continues at Fri Dec 30 09:11:27 PST 2016
+Logging continues at Fri Dec 30 09:11:37 PST 2016
+Logging continues at Fri Dec 30 09:16:16 PST 2016
+Logging continues at Fri Dec 30 09:16:26 PST 2016
+Logging continues at Fri Dec 30 09:16:36 PST 2016
+Logging continues at Fri Dec 30 09:16:46 PST 2016
+Logging continues at Fri Dec 30 09:16:56 PST 2016
+Logging continues at Fri Dec 30 09:17:06 PST 2016
+Logging continues at Fri Dec 30 09:17:16 PST 2016
+Logging continues at Fri Dec 30 09:17:26 PST 2016

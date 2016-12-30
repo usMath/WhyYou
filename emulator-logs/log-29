@@ -1,0 +1,16 @@
+Logging began at Fri Dec 30 08:38:04 PST 2016 [0]
+[18 FINE] (ConnectionReceiverThread.java:58) About to listen on 1540
+[44 WARNING] (ConnectionReceiverThread.java:64) Failed to bind to port 1540.
+[521 INFO] (DeviceListMain.java:70) Starting application: robot.RobotTemplate
+[523 INFO] (RobotTemplate.java:38) You v0.80 2016-12-30
+[578 INFO] (CANTalonDevice.java:69) Changed main sensor on 4 to Encoder
+[586 INFO] (CANTalonDevice.java:69) Changed main sensor on 5 to Encoder
+[586 INFO] (CANTalonDevice.java:69) Changed main sensor on 6 to Encoder
+[589 INFO] (CANTalonDevice.java:69) Changed main sensor on 1 to Encoder
+[589 INFO] (CANTalonDevice.java:69) Changed main sensor on 2 to Encoder
+[589 INFO] (CANTalonDevice.java:69) Changed main sensor on 3 to Encoder
+[614 INFO] (DeviceListMain.java:73) Hello, robot.RobotTemplate!
+[5828 INFO] (InstinctModule.java:116) Started autonomous mode.
+Logging continues at Fri Dec 30 08:38:14 PST 2016
+Logging continues at Fri Dec 30 08:38:24 PST 2016
+[20444 INFO] (InstinctModule.java:118) Completed autonomous mode.
